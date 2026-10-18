@@ -5,7 +5,7 @@
 
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-blue)]()
 [![PowerShell](https://img.shields.io/badge/PowerShell-5.1%2B-5391FE)]()
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![License](https://img.shields.io/badge/license-GPL--3.0-blue)](LICENSE)
 
 ---
 
@@ -134,4 +134,6 @@ hosts 屏蔽与 ADB 禁用均属可逆的本地设置调整，请自行评估并
 
 ## 许可
 
-[MIT](LICENSE)
+本项目采用 [GNU General Public License v3.0](LICENSE)。
+
+你可以自由使用、修改和分发本软件；若分发修改后的版本，需同样以 GPL-3.0 开源并提供源代码。

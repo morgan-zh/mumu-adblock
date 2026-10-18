@@ -38,6 +38,26 @@
 
 .NOTES
     Requires Administrator (auto-elevates). Windows PowerShell 5.1+ / PowerShell 7+.
+
+.COPYRIGHT
+    Copyright (C) 2026 Chaldea
+
+    This program is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the Free
+    Software Foundation, either version 3 of the License, or (at your option)
+    any later version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+    FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+    more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program. If not, see <https://www.gnu.org/licenses/>.
+
+.SPDX-License-Identifier
+    GPL-3.0-or-later
+
 #>
 
 [CmdletBinding(DefaultParameterSetName = 'Normal')]
@@ -56,7 +76,11 @@ param(
 
     # Internal: set on the elevated re-launch so we do not elevate again.
     [Parameter(ParameterSetName = 'Elevated')]
-    [switch]$Elevated
+    [switch]$Elevated,
+
+    # Print usage and exit.
+    [Alias('h','?')]
+    [switch]$Help
 )
 
 $ErrorActionPreference = 'Stop'
@@ -1215,6 +1239,41 @@ try {
 
 function Invoke-Main {
     Set-ConsoleUtf8
+
+    if ($Help) {
+        Write-Host @"
+
+MuMu-AdBlock.ps1 - MuMu Player ad / telemetry remover with full rollback
+
+USAGE
+  MuMu-AdBlock.ps1 [-Action <mode>] [options]
+
+MODES
+  -Action Apply     Remove ads (default). Needs admin; UAC prompt may appear.
+  -Action Verify    Read-only check of every module. No changes, no admin needed.
+  -Action Restore   Undo the most recent Apply on this machine.
+  -Action Detect    Only print the detected install / port / services / state.
+
+OPTIONS
+  -DryRun             Preview: prints what would change, writes nothing.
+  -NoLaunch           Never start the emulator; skips the in-guest step if not running.
+  -Strict             Also disable com.netease.nie.yosemite when present.
+  -BootTimeoutSec n   Seconds to wait for the Android guest to boot (default 180).
+  -Transcript path    Write this run's console transcript to that path.
+  -Help               Show this help and exit.
+
+EXAMPLES
+  .\MuMu-AdBlock.ps1 -Action Detect
+  .\MuMu-AdBlock.ps1 -DryRun
+  .\MuMu-AdBlock.ps1
+  .\MuMu-AdBlock.ps1 -Action Restore
+
+Backups and logs : %LOCALAPPDATA%\MuMu-AdBlock\
+License          : GPL-3.0-or-later
+
+"@
+        return 0
+    }
 
     $needsAdmin = $Action -in @('Apply','Restore')
     if ($needsAdmin -and -not (Test-Admin) -and -not $DryRun -and -not $Elevated) {

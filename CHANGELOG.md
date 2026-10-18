@@ -35,3 +35,7 @@
 
 - 仅支持 Windows + MuMu Player 12
 - 游戏中心模块需要模拟器运行
+
+## License
+
+GPL-3.0-only.
