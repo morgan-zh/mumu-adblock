@@ -1,0 +1,24 @@
+# OS / 编辑器
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.idea/
+.vscode/
+*.user
+*.suo
+
+# 运行时产物（本工具自身会在 %LOCALAPPDATA% 生成，不应进入仓库）
+*.log
+*.orig
+*.bak
+*.tmp
+*~
+
+# 本地测试脚本
+_test-*.ps1
+_*-test.ps1
+_elev-*.ps1
+_wait-probe*.ps1
+_*.txt
