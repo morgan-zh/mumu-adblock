@@ -6,9 +6,9 @@
 
 ## 快速开始
 
-下载项目后，双击 `Start-MuMu-AdBlock.cmd`，按菜单提示操作。
+下载项目后，进入 `tools` 目录，双击 `Start-MuMu-AdBlock.cmd`，按菜单提示操作。
 
-也可以在项目目录中运行：
+也可以在项目根目录用命令行运行：
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\MuMu-AdBlock.ps1
